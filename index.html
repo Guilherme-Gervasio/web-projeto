@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Página Web II</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #FF000;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #FF000;
-            color: white;
-            padding: 20px;
-        }
-
-        main {
-            margin: 20px;
-        }
-
-        button {
-            background-color: #FF000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #ff2c2c;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Formulário</title>
 </head>
-
 <body>
 
-    <header>
-        <h1>Minha Página Web</h1>
-    </header>
+  <form id="formCadastro">
+    <h2>Cadastro</h2>
 
-    <main>
-        <p>Primeira página WEB II</p>
-        <button onclick="alert('Você clicou!')">Clique aqui</button>
-    </main>
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+    <label for="telefone">Telefone:</label>
+    <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    const resultado = document.getElementById('resultado');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+
+      if (!nome || !email || !telefone) {
+        resultado.innerHTML = '<p style="color:red;">Preencha todos os campos.</p>';
+        return;
+      }
+
+      resultado.innerHTML = `
+        <h3>Cadastro realizado com sucesso!</h3>
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Telefone:</strong> ${telefone}</p>
+      `;
+
+      form.reset();
+    });
+  </script>
 
 </body>
 </html>
